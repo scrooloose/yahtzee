@@ -5,7 +5,7 @@ class Move
   end
 
   def make(dice)
-    raise "Already made this move" if (!@score.nil?)
+    raise "Already made this move" unless @score.nil?
     @score = send(@move_type, dice)
   end
 
