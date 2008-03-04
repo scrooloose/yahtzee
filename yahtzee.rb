@@ -7,9 +7,9 @@ require 'round.rb'
 class YahtzeeGame
   def initialize(players = 1)
     @dice = Array.new(5) {Die.new}
-    @no_of_players = players
-    @curr_player_no = 0
-    @players = Array.new(@no_of_players) { Player.new(self) }
+    @number_of_players = players
+    @current_player_number = 0
+    @players = Array.new(@number_of_players) { Player.new(self) }
     @rolls = 0
   end
 
@@ -24,15 +24,15 @@ class YahtzeeGame
 
   def end_turn
     @rolls = 0
-    @curr_player_no = (@curr_player_no + 1) % @no_of_players
+    @current_player_number = (@current_player_number + 1) % @number_of_players
   end
 
-  def curr_player
-    @players[@curr_player_no]
+  def current_player
+    @players[@current_player_number]
   end
 
-  def curr_player_no
-    @curr_player_no + 1
+  def current_player_number
+    @current_player_number + 1
   end
 
   def dice
@@ -55,8 +55,8 @@ players = 1 if (players <= 0)
 game = YahtzeeGame.new(players)
 puts "Beginning Yahtzee game with #{players} player#{players != 1 ? "s" : ""}"
 until (game.over?)
-  puts "Player #{game.curr_player_no}'s turn"
-  player = game.curr_player
+  puts "Player #{game.current_player_number}'s turn"
+  player = game.current_player
   player.start_turn
   puts "Your first roll is #{game.dice.join(', ')}.\nEnter the numbers of the dice you want to reroll (e.g. \"12345\" for all dice)"
   command = $stdin.gets
@@ -74,4 +74,4 @@ until (game.over?)
   puts "You scored #{score} in that move"
   player.print_board
 end
-puts "The winner is player #{game.curr_player_no} with a score of #{player.total_score}"
+puts "The winner is player #{game.current_player_number} with a score of #{player.total_score}"
