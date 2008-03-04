@@ -1,16 +1,16 @@
 require 'move.rb'
 
 class Round
-  @@upper_moves = [:ones, :twos, :threes, :fours, :fives, :sixes]
-  @@lower_moves = [:full_house, :small_straight, :large_straight, :three_of_a_kind, :four_of_a_kind, :yahtzee, :chance]
+  UPPER_MOVES = [:ones, :twos, :threes, :fours, :fives, :sixes]
+  LOWER_MOVES = [:full_house, :small_straight, :large_straight, :three_of_a_kind, :four_of_a_kind, :yahtzee, :chance]
 
   def initialize()
     @moves = Hash.new
-    Array.new(@@upper_moves).concat(@@lower_moves).each {|m| @moves[m] = Move.new(m)}
+    Array.new(UPPER_MOVES).concat(LOWER_MOVES).each {|m| @moves[m] = Move.new(m)}
   end
 
   def upper_total_raw
-    subtotal(@@upper_moves)
+    subtotal(UPPER_MOVES)
   end
 
   def upper_bonus
@@ -22,7 +22,7 @@ class Round
   end
 
   def lower_total
-    subtotal(@@lower_moves)
+    subtotal(LOWER_MOVES)
   end
 
   def grand_total
