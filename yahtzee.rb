@@ -36,7 +36,7 @@ class YahtzeeGame
   end
 
   def dice
-    @dice.map {|d| d.num}
+    @dice.map {|d| d.number}
   end
 
   def over?

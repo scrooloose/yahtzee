@@ -4,12 +4,12 @@ class Die
   end
 
   def roll
-    @num = rand(6) + 1
+    @number = rand(6) + 1
   end
 
   def to_s
-    @num
+    @number
   end
 
-  attr_reader :num
+  attr_reader :number
 end
