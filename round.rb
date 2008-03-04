@@ -6,11 +6,11 @@ class Round
 
   def initialize()
     @moves = Hash.new
-    Array.new(UPPER_MOVES).concat(LOWER_MOVES).each {|m| @moves[m] = Move.new(m)}
+    (UPPER_MOVES + LOWER_MOVES).each {|m| @moves[m] = Move.new(m)}
   end
 
   def upper_total_raw
-    subtotal(UPPER_MOVES)
+    subtotal(upper_moves)
   end
 
   def upper_bonus
@@ -22,7 +22,7 @@ class Round
   end
 
   def lower_total
-    subtotal(LOWER_MOVES)
+    subtotal(lower_moves)
   end
 
   def grand_total
@@ -65,6 +65,15 @@ class Round
 
   private
   def subtotal(move_set)
-    @moves.select {|name, move| move_set.include?(name)}.map {|name, move| move.score}.inject(0){|total, val| total + (val.nil? ? 0 : val)}
+    move_set.map {|name, move| move.score}.inject(0){|total, val| total + (val.nil? ? 0 : val)}
   end
+
+  def upper_moves
+    @moves.select {|name,move| UPPER_MOVES.include? name}
+  end
+
+  def lower_moves
+    @moves.select {|name,move| LOWER_MOVES.include? name}
+  end
+
 end
