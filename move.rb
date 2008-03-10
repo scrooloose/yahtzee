@@ -60,7 +60,7 @@ class Move
     end
 
     def yahtzee(dice)
-      dice == Array.new(5, dice[0]) ? 50 : 0
+      dice.uniq.size == 1 ? 50 : 0
     end
 
     def chance(dice)
