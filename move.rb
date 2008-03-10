@@ -52,11 +52,11 @@ class Move
     end
 
     def three_of_a_kind(dice)
-      dice.reject{|d| d != dice.sort[2]}.length >= 3 ? dice.inject() {|sum, val| sum + val} : 0
+      dice.reject{|d| d != dice.sort[2]}.length >= 3 ? sum(dice) : 0
     end
 
     def four_of_a_kind(dice)
-      dice.reject{|d| d != dice.sort[2]}.length >= 4 ? dice.inject() {|sum, val| sum + val} : 0
+      dice.reject{|d| d != dice.sort[2]}.length >= 4 ? sum(dice) : 0
     end
 
     def yahtzee(dice)
@@ -64,10 +64,15 @@ class Move
     end
 
     def chance(dice)
-      dice.inject() {|sum, val| sum + val}
+      sum(dice)
     end
 
     def sum_for(dice_value, dice)
       dice.select{|d| d == dice_value}.inject(0) {|sum, val| sum + val}
     end
+
+    def sum(dice)
+      dice.inject() {|sum, val| sum + val}     
+    end
+
 end
