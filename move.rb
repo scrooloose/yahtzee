@@ -48,8 +48,7 @@ class Move
     end
 
     def large_straight(dice)
-      dice.sort!
-      dice == [1, 2, 3, 4, 5] || dice == [2, 3, 4, 5, 6] ? 40 : 0
+      [[1,2,3,4,5], [2,3,4,5,6]].include?(dice.sort) ? 40 : 0
     end
 
     def three_of_a_kind(dice)
