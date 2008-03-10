@@ -14,27 +14,27 @@ class Move
   private
 
     def ones(dice)
-      dice.reject{|d| d != 1}.inject(0) {|sum, val| sum + val}
+      sum_for(1, dice)
     end
 
     def twos(dice)
-      dice.reject{|d| d != 2}.inject(0) {|sum, val| sum + val}
+      sum_for(2, dice)
     end
 
     def threes(dice)
-      dice.reject{|d| d != 3}.inject(0) {|sum, val| sum + val}
+      sum_for(3, dice)
     end
 
     def fours(dice)
-      dice.reject{|d| d != 4}.inject(0) {|sum, val| sum + val}
+      sum_for(4, dice)
     end
 
     def fives(dice)
-      dice.reject{|d| d != 5}.inject(0) {|sum, val| sum + val}
+      sum_for(5, dice)
     end
 
     def sixes(dice)
-      dice.reject{|d| d != 6}.inject(0) {|sum, val| sum + val}
+      sum_for(6, dice)
     end
 
     def full_house(dice)
@@ -66,5 +66,9 @@ class Move
 
     def chance(dice)
       dice.inject() {|sum, val| sum + val}
+    end
+
+    def sum_for(dice_value, dice)
+      dice.select{|d| d == dice_value}.inject(0) {|sum, val| sum + val}
     end
 end
